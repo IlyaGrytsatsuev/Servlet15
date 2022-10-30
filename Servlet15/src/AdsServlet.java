@@ -21,7 +21,8 @@ public class AdsServlet extends HttpServlet{
         try {
             ads_list.readFile();
             HashMap<String, String> tmp = ads_list.GetAdsList();
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
+            session.setMaxInactiveInterval(30*60);
             request.setAttribute("session", session);
 
             request.setAttribute("data", tmp);

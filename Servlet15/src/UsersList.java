@@ -18,6 +18,10 @@ public class UsersList {
         return false;
     }
 
+    synchronized void delete(String key){
+    	users.remove(key);
+    }
+    
     synchronized void readFile() throws Exception{
         String path = "/home/ilya/Desktop/Servlet15Files/Users";
         File list = new File(path);
@@ -28,6 +32,25 @@ public class UsersList {
             users.put(tmp[0], tmp[1]);
         }
     }
+    
+    synchronized void writeFile() throws Exception{
+        String path = "/home/ilya/Desktop/Servlet15Files/Users";
+        FileWriter fstream = new FileWriter(path);
+        PrintWriter out = new PrintWriter(fstream);
+        if(users.size() == 0){
+            out.write("");
+        }
+        
+        else {
+            for (String key : users.keySet()) {
+                out.write(key + " " + users.get(key) + "\n");
+            }
+        }
+        fstream.close();
+    }
 
+    public HashMap<String, String> getUsers(){
+    	return users;
+    }
 
 }

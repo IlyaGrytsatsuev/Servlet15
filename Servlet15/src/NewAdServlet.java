@@ -21,10 +21,17 @@ public class NewAdServlet extends HttpServlet{
 
             response.setContentType("text/html");
 
+	    HttpSession session = request.getSession(false);
+	    String login = (String)session.getAttribute("name");
             PrintWriter out = response.getWriter();
             out.println("<html><body>");
             request.getRequestDispatcher("StyleLink.html").include(request, response);
-            request.getRequestDispatcher("LoggedInPanel.html").include(request, response);
+            
+	    if(login.equals("Admin"))
+	       request.getRequestDispatcher("AdminPanel.html").include(request, response);
+	    else	
+               request.getRequestDispatcher("LoggedInPanel.html").include(request, response);
+               
             String name = request.getParameter("name");
             String text = request.getParameter("text");
             list.AddNewAdv(name, text);

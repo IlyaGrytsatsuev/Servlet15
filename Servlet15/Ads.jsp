@@ -13,16 +13,22 @@
   </head>
   <body>
   <%HttpSession s = (HttpSession)request.getAttribute("session");
-    String name = (String)s.getAttribute("name");
-    if(name != null){%>
+    String name = (String)session.getAttribute("name");
+    
+  if(name=="Admin"){
+  %>
   <a href="LogOut">Logout</a> 
   <a href="NewAd.html">Add New</a>
   <hr>
-  <%} else {%>
+  <%
+  } else {
+  %>
   <a href="LoginLink.html">Login</a>
   <hr>
-  <%}%>
-  <% HashMap<String, String> tmp = (HashMap<String, String>)request.getAttribute("data");
+  <%
+  }
+
+   HashMap<String, String> tmp = (HashMap<String, String>)request.getAttribute("data");
   for(String key : tmp.keySet()) {%>
   <dl/>
     <dt><%= key %></dt>

@@ -38,4 +38,14 @@
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AccountManagerServlet</servlet-name>
+        <servlet-class>AccountManagerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccountManagerServlet</servlet-name>
+        <url-pattern>/AccountManager</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
