@@ -22,10 +22,12 @@ public class AdsServlet extends HttpServlet{
             ads_list.readFile();
             HashMap<String, String> tmp = ads_list.GetAdsList();
             HttpSession session = request.getSession();
-            session.setMaxInactiveInterval(30*60);
-            request.setAttribute("session", session);
-
+            boolean auth = false;
+            String name = (String)session.getAttribute("name");
+	    if(name.equals("Admin"))
+	    	auth = true;
             request.setAttribute("data", tmp);
+            request.setAttribute("auth", auth);
             RequestDispatcher rd = request.getRequestDispatcher("Ads.jsp");
             rd.forward(request, response);
         }

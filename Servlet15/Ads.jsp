@@ -12,22 +12,23 @@
     <title>Advertisements</title>
   </head>
   <body>
-  <%HttpSession s = (HttpSession)request.getAttribute("session");
+  <%boolean auth = (boolean)request.getAttribute("auth");
     String name = (String)session.getAttribute("name");
     
-  if(name=="Admin"){
+  if(auth){
   %>
   <a href="LogOut">Logout</a> 
   <a href="NewAd.html">Add New</a>
+    <a href="AccountManager">Manage Accounts</a>
   <hr>
-  <%
-  } else {
-  %>
-  <a href="LoginLink.html">Login</a>
-  <hr>
-  <%
-  }
+  <%}else if (name != null){%>
+    <a href="LogOut">Logout</a> 
+    <a href="NewAd.html">Add New</a>
+    <hr>
+    <%} else if (name == null){%>
+    <a href="LoginLink.html">LogIn</a> 
 
+<%}
    HashMap<String, String> tmp = (HashMap<String, String>)request.getAttribute("data");
   for(String key : tmp.keySet()) {%>
   <dl/>
